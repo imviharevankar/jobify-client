@@ -11,4 +11,8 @@ export const resources = {
   descriptionIsRequired: 'Description required',
   skillIsRequired: 'Skills required',
   timeLineIsRequired: 'Time line required',
+  typeOfEmployment: 'Type of Employment',
+  sortBy: 'Sort by',
+  time: 'Time',
+  price: 'Price',
 }

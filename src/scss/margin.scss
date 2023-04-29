@@ -1,4 +1,8 @@
 // margin
+.m_auto {
+  margin: 0 auto;
+}
+
 .m_12 {
   margin: 0.75rem;
 }
@@ -27,3 +31,11 @@
 
 
 // margin unidirection
+.mt_12 {
+  margin-top: 0.75rem;
+}
+
+// margin bottom
+.mb_12 {
+  margin-bottom: 0.75rem;
+}
