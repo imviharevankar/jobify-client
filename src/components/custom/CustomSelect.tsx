@@ -35,7 +35,7 @@ const CustomSelect: FC<ICustomSelect> = (
     error,
   },
 ) => {
-
+  console.group(value);
   return (
     <>
       <FormLabel label={label} required={required} />
