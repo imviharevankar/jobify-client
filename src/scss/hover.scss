@@ -1,0 +1,7 @@
+@import "./variables";
+
+.hover_card_primary:hover {
+  transition: 0.3s ease background-color;
+  color: $white !important;
+  background-color: $primary;
+}

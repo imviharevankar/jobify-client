@@ -5,6 +5,8 @@ import "./scss/fonts.scss";
 import "./scss/sizes.scss";
 import "./scss/padding.scss";
 import "./scss/margin.scss";
+import "./scss/hover.scss";
+import "./scss/border.scss";
 import CommonLayout from './layout/CommonLayout';
 import { IRoutes, routes } from './routes/routes';
 
