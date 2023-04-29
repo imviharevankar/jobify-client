@@ -1,0 +1,50 @@
+@import "./import";
+
+.font-primary {
+  font-family: $font-primary;
+}
+
+// font size
+.fs_10 {
+  font-size: 0.625rem;
+}
+
+.fs_12 {
+  font-size: 0.75rem;
+}
+
+.fs_16 {
+  font-size: 1rem;
+}
+
+
+
+// font weight
+.fw_700 {
+  font-weight: 700;
+}
+
+.fw_600 {
+  font-weight: 600;
+}
+
+.fw_500 {
+  font-weight: 500;
+}
+
+.fw_400 {
+  font-weight: 400;
+}
+
+// line height
+.lh_20 {
+  line-height: 1.25rem;
+}
+
+.lh_16 {
+  line-height: 1rem;
+}
+
+.lh_12 {
+  line-height: 0.75rem;
+}
