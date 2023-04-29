@@ -1,7 +1,19 @@
 import { FC } from "react";
 import CustomButton from "./custom/CustomButton";
 
-const JobListingCard: FC = () => {
+interface IJobListingCard {
+  title: string,
+  createdBy: string,
+  skills: string[],
+  timeline: string,
+}
+const JobListingCard: FC<IJobListingCard> = (props: IJobListingCard) => {
+  const {
+    title,
+    createdBy,
+    skills,
+    timeline,
+  } = props
   return (
     <div className="bg_white mb_12 p_16 br_16_0_16_16">
       <div className="flex justify_between col_center align_center">
@@ -10,8 +22,8 @@ const JobListingCard: FC = () => {
             <img className="w_40_px h_40_px" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="icon" />
           </div>
           <div className="font_primary">
-            <p className="fs_20">Job title</p>
-            <p className="fs_12">client name</p>
+            <p className="fs_20">{title}</p>
+            <p className="fs_12">{createdBy}</p>
           </div>
         </div>
         <div>
@@ -23,10 +35,15 @@ const JobListingCard: FC = () => {
       </div>
       <div className="flex justify_between col_center">
         <div className="flex mt_12 g_16 col_center align_center">
-          <p className="px_1_py_12 bg_gray br_8 fs_12">skills</p>
-          <p className="px_1_py_12 bg_gray br_8 fs_12">skills</p>
+          {
+            skills?.map((ele: any) => {
+              return (
+                <p className="px_1_py_12 bg_gray br_8 fs_12">{ele}</p>
+              )
+            })
+          }
         </div>
-        <p className="fs_12 font_primary">$400/hour</p>
+        <p className="fs_12 font_primary">{timeline}</p>
       </div>
     </div>
   )
