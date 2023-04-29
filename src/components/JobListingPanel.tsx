@@ -1,12 +1,12 @@
+import { FC } from "react";
 import JobListingCard from "./JobListingCard";
-import CustomSelect from "./custom/CustomSelect";
+import SortCard from "./SortCard";
 
-const JobListingPanel = () => {
+const JobListingPanel: FC = () => {
   return (
-    <div>
-      <div className="flex space_between">
-        <p>40 jobs found</p>
-        <CustomSelect />
+    <div className="m_12">
+      <div className="mb_12">
+        <SortCard />
       </div>
       <JobListingCard />
       <JobListingCard />

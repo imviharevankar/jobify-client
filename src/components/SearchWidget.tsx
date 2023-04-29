@@ -1,31 +1,34 @@
+import { FC } from "react";
 import { Col, Row } from "antd";
 import { resources } from "../util/resources";
 import CustomSelect from "./custom/CustomSelect";
-import CustomSwitch from "./custom/CustomSwitch";
 import CustomButton from "./custom/CustomButton";
 
-const SearchWidget = () => {
+const SearchWidget: FC = () => {
   return (
-    <>
+    <div className="bg_white p_16 br_8_0_8_8">
       <Row gutter={22}>
-        <Col md={8}>
+        <Col xs={24} md={10}>
           <CustomSelect
             label={resources.skills}
+            required={false}
           />
         </Col>
-        <Col md={8}>
+        <Col xs={24} md={10}>
           <CustomSelect
             label={resources.location}
+            className="fs_20 font_primary"
+            required={false}
           />
         </Col>
-        <Col md={2}>
-          <CustomSwitch label="availfrkneff" name='availiability' />
+        <Col xs={24} md={4} className="flex align_end">
+          <CustomButton
+            label="search"
+            className="bg_primary w_100 font_primary white"
+          />
         </Col>
       </Row>
-      <CustomButton
-        label="search"
-      />
-    </>
+    </div>
   )
 }
 
