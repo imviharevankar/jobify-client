@@ -49,7 +49,6 @@ export const JobsModal = () => {
       timeline: validateRequired(resources?.timeLineIsRequired),
     }),
     onSubmit: async (values) => {
-      console.log(values);
       const {
         title,
         category,
@@ -66,9 +65,9 @@ export const JobsModal = () => {
           location,
           skills,
           timeline,
-          createdBy: 'jagan@gmail.com',
+          createdBy: 'vihar205@gmail.com',
         }
-        const response = await axiosPost(JOB_LISTING_URL, requestBody, false);
+        const response = await axiosPost(JOB_LISTING_URL, requestBody);
         console.log(response);
       } catch (error) {
         console.log(error);

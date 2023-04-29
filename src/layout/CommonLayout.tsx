@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 interface CommonLayoutProps {
   child: ReactElement,
@@ -7,8 +9,10 @@ interface CommonLayoutProps {
 const CommonLayout = (props: CommonLayoutProps) => {
   const { child } = props;
   return (
-    <div>
+    <div className='container'>
+      <Header />
       {child}
+      <Footer />
     </div>
   )
 }
