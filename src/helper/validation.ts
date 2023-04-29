@@ -1,6 +1,6 @@
 // import { FormConstants } from 'util/formConstants';
 // import { ALPHA_REGEX, EMAIL_REGEX, MOBILE_REGEX } from 'util/regexKeys';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 
 // export const validateRequiredString = (
 //   requiredMsg: string,
@@ -28,13 +28,13 @@
 //     .oneOf([Yup.ref(key)], requiredMsg)
 // }
 
-// export const validateRequired = (
-//   requiredMsg: string,
-// ) => {
-//   return Yup
-//     .string()
-//     .required(requiredMsg)
-// };
+export const validateRequired = (
+  requiredMsg: string,
+) => {
+  return Yup
+    .string()
+    .required(requiredMsg)
+};
 
 // export const firstNameValidation = () => {
 //   return validateRequiredString(
