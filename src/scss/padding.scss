@@ -1,10 +1,14 @@
 // padding
+.p_8 {
+  padding: 0.5rem;
+}
+
 .p_16 {
   padding: 1rem;
 }
 
-.p_8 {
-  padding: 0.5rem;
+.p_24 {
+  padding: 2rem;
 }
 
 // padding x
@@ -14,7 +18,7 @@
 
 // padding y
 .py {
-  padding: 1rem 2.5rem, ;
+  padding: 1rem 2.5rem;
 }
 
 // padding xy

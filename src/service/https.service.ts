@@ -5,8 +5,8 @@ import axios from "axios";
 export const axiosPost = (
   url: string,
   body: object,
-  contentType: string,
-  authKeyExists: boolean,
+  contentType?: string,
+  authKeyExists?: boolean,
 ) => {
   const headers = {
     "Content-Type": contentType,

@@ -1,0 +1,17 @@
+@import "./scss/variables";
+
+.container {
+  max-width: $maxDesktop;
+  width: 95vw;
+  padding: 0 1rem;
+  margin: 1rem auto;
+}
+
+.img_container {
+  width: 100%;
+  min-height: 100%;
+}
+
+.block {
+  display: block;
+}

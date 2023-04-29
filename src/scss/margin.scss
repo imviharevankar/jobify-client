@@ -20,7 +20,6 @@
 .my_16 {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  display: block;
 }
 
 // margin top
@@ -28,14 +27,16 @@
   margin-top: 1rem;
 }
 
-
-
 // margin unidirection
 .mt_12 {
   margin-top: 0.75rem;
 }
 
 // margin bottom
+.mb_8 {
+  margin-bottom: 0.5rem;
+}
+
 .mb_12 {
   margin-bottom: 0.75rem;
 }
