@@ -6,4 +6,11 @@ export const resources = {
   sortBy: 'Sort by',
   time: 'Time',
   price: 'Price',
+  jobDetails: "Job Details",
+  catagory: "Catagory",
+  timeLine: "Time line",
+  createdAt: "Created at",
+  updatedAt: "Updated at",
+  description: "Description",
+  talkToClient: "Talk to client",
 }

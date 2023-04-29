@@ -20,6 +20,7 @@ const JobListingPanel: FC<IJobListingPanel> = (props: IJobListingPanel) => {
               createdBy={ele?.createdBy}
               skills={ele?.skills}
               timeline={ele?.timeline}
+              jobId={ele?.jobId}
             />
           )
         })
