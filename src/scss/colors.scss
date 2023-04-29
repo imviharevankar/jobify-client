@@ -1,0 +1,39 @@
+@import "./variables";
+
+// color
+.gray {
+  color: $gray;
+}
+
+.error {
+  color: $error;
+}
+
+.primary {
+  color: $primary;
+}
+
+.text {
+  color: $text;
+}
+
+.white {
+  color: $white;
+}
+
+.warnning {
+  color: $warnning;
+}
+
+// bg color
+.bg_white {
+  background-color: $white;
+}
+
+.bg_gray {
+  background-color: $gray;
+}
+
+.bg_red {
+  background-color: $primary;
+}

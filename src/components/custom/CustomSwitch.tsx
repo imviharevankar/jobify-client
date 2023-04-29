@@ -31,4 +31,3 @@ const CustomSwitch: FC<ICustomSwitch> = (props) => {
 }
 
 export default CustomSwitch;
-  
