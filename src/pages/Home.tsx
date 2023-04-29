@@ -1,8 +1,11 @@
 import { FC } from "react";
+import JobCategoryPannel from "../components/JobCategoryPannel";
 
 const Home: FC = () => {
   return (
-    <div>Home</div>
+    <div>
+      <JobCategoryPannel />
+    </div>
   )
 }
 
