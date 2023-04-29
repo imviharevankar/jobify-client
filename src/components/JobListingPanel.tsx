@@ -2,23 +2,28 @@ import { FC } from "react";
 import JobListingCard from "./JobListingCard";
 import SortCard from "./SortCard";
 
-const JobListingPanel: FC = () => {
+interface IJobListingPanel {
+  jobList: [],
+}
+const JobListingPanel: FC<IJobListingPanel> = (props: IJobListingPanel) => {
+  const { jobList } = props;
   return (
     <div className="m_12">
       <div className="mb_12">
         <SortCard />
       </div>
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
-      <JobListingCard />
+      {
+        jobList?.map((ele: any) => {
+          return (
+            <JobListingCard
+              title={ele?.title}
+              createdBy={ele?.createdBy}
+              skills={ele?.skills}
+              timeline={ele?.timeline}
+            />
+          )
+        })
+      }
     </div>
   );
 };
