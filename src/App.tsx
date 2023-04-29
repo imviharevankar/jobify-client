@@ -8,20 +8,30 @@ import "./scss/margin.scss";
 import "./scss/hover.scss";
 import "./scss/border.scss";
 import "./scss/colors.scss";
+import "./global.scss";
 import CommonLayout from './layout/CommonLayout';
 import { IRoutes, routes } from './routes/routes';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
 
   return (
     <Routes>
       {
-        routes.map((item: IRoutes) => (
-          <Route
-            key={item.path}
-            path={item.path}
-            element={<CommonLayout child={< item.element />} />}
-          />
+        routes.map((route: IRoutes) => (
+          route.isPrivate
+            ? (
+              <Route element={<ProtectedRoute />}>
+                <Route
+                  path={route.path}
+                  element={<CommonLayout child={< route.element />} />}
+                />
+              </Route>
+            )
+            : <Route
+              path={route.path}
+              element={<CommonLayout child={< route.element />} />}
+            />
         ))
       }
     </Routes>

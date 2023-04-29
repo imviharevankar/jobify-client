@@ -29,6 +29,10 @@
   color: $success;
 }
 
+.charcoal {
+  color: $charcoal;
+}
+
 // bg color
 .bg_white {
   background-color: $white;
@@ -44,4 +48,12 @@
 
 .bg_primary {
   background-color: $primary;
+}
+
+.bg_blue {
+  background-color: blue;
+}
+
+.error_red {
+  color: red;
 }

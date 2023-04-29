@@ -11,12 +11,14 @@ const SearchWidget: FC = () => {
         <Col xs={24} md={10}>
           <CustomSelect
             label={resources.skills}
+            value=''
             required={false}
           />
         </Col>
         <Col xs={24} md={10}>
           <CustomSelect
             label={resources.location}
+            value=''
             className="fs_20 font_primary"
             required={false}
           />
