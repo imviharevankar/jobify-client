@@ -15,4 +15,5 @@ export const resources = {
   sortBy: 'Sort by',
   time: 'Time',
   price: 'Price',
+  locationIsRequired: 'Location required',
 }

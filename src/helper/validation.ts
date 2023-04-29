@@ -36,6 +36,10 @@ export const validateRequired = (
     .required(requiredMsg)
 };
 
+export const validateMultiSelect = (min: number, requiredMsg: string) => {
+  return Yup.array().min(min, requiredMsg);
+}
+
 // export const firstNameValidation = () => {
 //   return validateRequiredString(
 //     resources.firstNameIsRequired,
