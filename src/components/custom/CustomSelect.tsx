@@ -13,7 +13,7 @@ interface ICustomSelect {
   name?: string,
   label?: string,
   required?: boolean,
-  // value: string | number,
+  value: string | number,
   options?: ISelectOption[],
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined,
   className?: string,
@@ -25,7 +25,7 @@ interface ICustomSelect {
 const CustomSelect: FC<ICustomSelect> = (
   {
     label = '',
-    // value,
+    value,
     options,
     onChange,
     className,

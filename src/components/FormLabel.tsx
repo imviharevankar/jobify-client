@@ -8,7 +8,7 @@ interface FormLabelProps {
 const FormLabel: FC<FormLabelProps> = (props: FormLabelProps) => {
   const { label, required } = props;
   return (
-    <label>{required ? <>{`${label}`}<span className='error_red'>*</span></> : <>{label}</>}</label>
+    <label className="my_16">{required ? <>{`${label}`}<span className='error_red'>*</span></> : <>{label}</>}</label>
   )
 }
 
