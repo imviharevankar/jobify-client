@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Home from "../pages/Home";
-import { HOME } from "./path";
+import { HOME, SEARCH } from "./path";
+import Search from "../pages/Search";
 
 export interface IRoutes {
   element: FC,
@@ -19,4 +20,5 @@ const routeObjectGenerator = (element: FC, path: string, isPrivate: boolean): IR
 export const routes = [
   // HOME
   routeObjectGenerator(Home, HOME, false),
+  routeObjectGenerator(Search, SEARCH, false),
 ];
