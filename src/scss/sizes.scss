@@ -3,12 +3,24 @@
   height: 40px;
 }
 
+.vh_100 {
+  height: 100vh;
+}
+
 .h_64_px {
   height: 4rem;
 }
 
 .h_100 {
   height: 100%;
+}
+
+.h_1 {
+  height: 1px;
+}
+
+.h_max_content {
+  height: max-content;
 }
 
 // width

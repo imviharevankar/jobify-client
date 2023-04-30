@@ -6,6 +6,9 @@ import { DataActionKeys, DataActionType, DataStateType } from "./type/dataContex
 import { axiosGet } from "../service/https.service";
 import { DROPDOWN_URL } from "../api/api";
 import { HttpStatus } from "../api/httpsStatus";
+import { FormikProps } from "formik";
+import { ChangeEvent } from 'react';
+import { JobFormSchema, SignUpSchema } from "../util/formSchema";
 
 interface IDataContext {
   children: ReactNode,
@@ -48,11 +51,11 @@ const DataContext = createContext(
     dataDispatcher: (_data: DataActionType) => { },
     navigateToSpecificRoute: (_path: string) => { },
     // getAuthToken: () => { },
-    // handleFormikChange: (
-    //   _formik: FormikProps<SignUpSchema> | FormikProps<CommercialSearchPanelSchema> | FormikProps<UserFormSchema>,
-    //   _key: string,
-    //   _value: ChangeEvent<HTMLInputElement> | string,
-    //   _touched: boolean) => { },
+    handleFormikChange: (
+      _formik: FormikProps<SignUpSchema> | FormikProps<JobFormSchema>,
+      _key: string,
+      _value: ChangeEvent<HTMLInputElement> | string,
+      _touched: boolean) => { },
     navigateRouteWithState: (_path: string, _state: object) => { },
     navigateRouteWithQuery: (_path: string, _search: string) => { },
     fetchDropdownList: () => { },
@@ -99,15 +102,15 @@ const DataContextProvider = (props: IDataContext) => {
   //   }
   // }
 
-  // const handleFormikChange = (
-  //   formik: FormikProps<SignUpSchema> | FormikProps<CommercialSearchPanelSchema> | FormikProps<UserFormSchema>,
-  //   key: string,
-  //   value: ChangeEvent<HTMLInputElement> | string,
-  //   touched: boolean,
-  // ) => {
-  //   formik.setFieldTouched(key, touched);
-  //   formik.setFieldValue(key, value);
-  // }
+  const handleFormikChange = (
+    formik: FormikProps<SignUpSchema> | FormikProps<JobFormSchema>,
+    key: string,
+    value: ChangeEvent<HTMLInputElement> | string,
+    touched: boolean,
+  ) => {
+    formik.setFieldTouched(key, touched);
+    formik.setFieldValue(key, value);
+  }
 
   const fetchDropdownList = async () => {
     const response = await axiosGet(DROPDOWN_URL)
@@ -128,7 +131,7 @@ const DataContextProvider = (props: IDataContext) => {
     dataDispatcher,
     navigateToSpecificRoute,
     // getAuthToken,
-    // handleFormikChange,
+    handleFormikChange,
     navigateRouteWithState,
     navigateRouteWithQuery,
     fetchDropdownList,

@@ -1,11 +1,13 @@
-import { FC } from "react";
-import Home from "../pages/Home";
-import { HOME, PROFILE, SEARCH, SIGN_IN, SIGN_UP, JOB_DETAILS } from "./path";
-import Search from "../pages/Search";
-import Profile from "../pages/Profile";
-import SignUp from "../pages/SignUp";
-import SignIn from "../pages/SignIn";
-import JobDetails from "../pages/JobDetails";
+import { FC, lazy } from "react";
+import { HOME, PROFILE, SEARCH, SIGN_IN, SIGN_UP, JOB_DETAILS, PUBLIC_PROFILE } from "./path";
+
+const Home = lazy(() => import("../pages/Home"));
+const Search = lazy(() => import("../pages/SignUp"));
+const Profile = lazy(() => import("../pages/Profile"));
+const SignUp = lazy(() => import("../pages/SignUp"));
+const SignIn = lazy(() => import("../pages/SignIn"));
+const JobDetails = lazy(() => import("../pages/JobDetails"));
+const PublicProfile = lazy(() => import("../pages/PublicProfile"));
 
 export interface IRoutes {
   element: FC,
@@ -22,11 +24,11 @@ const routeObjectGenerator = (element: FC, path: string, isPrivate: boolean): IR
 };
 
 export const routes = [
-  // HOME
   routeObjectGenerator(Home, HOME, false),
   routeObjectGenerator(Search, SEARCH, false),
   routeObjectGenerator(Profile, PROFILE, true),
   routeObjectGenerator(SignUp, SIGN_UP, false),
   routeObjectGenerator(SignIn, SIGN_IN, false),
   routeObjectGenerator(JobDetails, JOB_DETAILS, false),
+  routeObjectGenerator(PublicProfile, PUBLIC_PROFILE, false),
 ];

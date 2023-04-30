@@ -12,6 +12,10 @@
   margin: 0.75rem 0;
 }
 
+.-mx_24 {
+  margin: 0 -1.5rem;
+}
+
 // margin y
 .my_12 {
   margin: 0 0.75rem;
@@ -23,6 +27,10 @@
 }
 
 // margin top
+.mt_4 {
+  margin-top: 0.25rem;
+}
+
 .mt_16 {
   margin-top: 1rem;
 }
@@ -43,4 +51,9 @@
 
 .mb_20 {
   margin-bottom: 1.25rem;
+}
+
+// margin left
+.ml_auto {
+  margin-left: auto;
 }
