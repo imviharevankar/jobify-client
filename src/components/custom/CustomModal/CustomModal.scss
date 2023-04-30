@@ -1,0 +1,20 @@
+.ant_modal {
+  background: #ffffff;
+  border-radius: 16px 0px 16px 16px !important;
+}
+
+.ant_modal_title {
+  border: 1px solid red !important;
+}
+
+.modalStyle .ant-modal-header {
+  border-radius: 20px 20px 0 0 !important;
+}
+
+.modal {
+  border: 1px solid red;
+
+  .ant_modal_title {
+    border: 1px solid red !important;
+  }
+}

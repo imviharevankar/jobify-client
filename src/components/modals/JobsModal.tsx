@@ -157,7 +157,7 @@ export const JobsModal = () => {
         </Row>
         <div className='flex justify_end mt_16'>
           <CustomButton
-            label='save'
+            label={resources?.save}
             className='white bg_blue row_center w_max py br_8_0_8_8 h_max fs_16 fw_600 lh_16'
           />
         </div>
