@@ -10,6 +10,7 @@ import "./scss/border.scss";
 import "./scss/colors.scss";
 import "./scss/table.scss";
 import "./global.scss";
+import "./scss/modal.scss";
 import CommonLayout from './layout/CommonLayout';
 import { IRoutes, routes } from './routes/routes';
 import ProtectedRoute from './routes/ProtectedRoute';
