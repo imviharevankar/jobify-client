@@ -39,12 +39,19 @@ export const resources = {
   freelancer: 'Freelancer',
   signUp: 'Sign Up',
   submit: 'Submit',
-   jobDetails: "Job Details",
+  jobDetails: "Job Details",
   catagory: "Catagory",
   createdAt: "Created at",
   updatedAt: "Updated at",
   talkToClient: "Talk to client",
   save: 'Save',
   addJob: 'Add job',
-  postJob: 'Post job'
+  postJob: 'Post job',
+  loading: 'Loading',
+  logOut: 'Log Out',
+  hireMe: "Hire Me",
+  amountEarned: "Amount Earned",
+  amountSpent: "Amount Spent",
+  amountOnhold: "Amount On-hold",
+  memberSince: 'Member Since'
 }

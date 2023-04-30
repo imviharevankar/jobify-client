@@ -1,5 +1,3 @@
-import { Space } from "antd";
-import { DollarOutlined, MessageOutlined } from "@ant-design/icons";
 import CustomTable from "../custom/CustomTable";
 
 const ProjectList = () => {
@@ -21,16 +19,6 @@ const ProjectList = () => {
       dataIndex: 'status',
       title: 'Status'
     },
-    {
-      dataIndex: 'action',
-      title: 'Actions',
-      render: (() => (
-        <Space>
-          <MessageOutlined className="fs_20 pointer" />
-          <DollarOutlined className="fs_20 pointer" />
-        </Space>
-      ))
-    }
   ];
 
   const data = [

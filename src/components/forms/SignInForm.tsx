@@ -9,6 +9,11 @@ import CustomButton from '../custom/CustomButton';
 import { axiosPost } from '../../service/https.service';
 import { SIGN_IN_URL } from '../../api/api';
 import { encodeJwt } from '../../helper/cipher';
+import { HttpStatus } from '../../api/httpsStatus';
+import { setLocalStorage } from '../../helper/storage';
+import { StorageKeys } from '../../util/storageKeys';
+import { HOME } from '../../routes/path';
+import { useData } from '../../context/DataContext';
 
 enum SignInFormKeys {
   EMAIL = 'email',
@@ -16,6 +21,8 @@ enum SignInFormKeys {
 }
 
 const SignInForm = () => {
+
+  const { navigateToSpecificRoute } = useData();
 
   const signInFormik = useFormik<SignInFormSchema>({
     enableReinitialize: true,
@@ -34,6 +41,10 @@ const SignInForm = () => {
       const token = encodeJwt({ email, password });
       try {
         const response = await axiosPost(SIGN_IN_URL, { token });
+        if (response.status === HttpStatus.OK) {
+          navigateToSpecificRoute(HOME);
+          setLocalStorage(StorageKeys.AUTH_USER, response?.data?.token);
+        }
         console.log(response);
       } catch (error) {
         console.log(error);
