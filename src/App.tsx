@@ -27,13 +27,15 @@ function App() {
   const { dataState, dataDispatcher } = useData();
 
   const handleMessageModal = (): void => {
-    dataDispatcher({ type: DataActionKeys.MESSAGE_MODAL, payload: false })
+    dataDispatcher({ type: DataActionKeys.MESSAGE_MODAL, payload: true });
+    dataDispatcher({ type: DataActionKeys.MESSAGE, payload: '' });
+    dataDispatcher({ type: DataActionKeys.API_STATUS, payload: SUCCESS });
   }
 
   return (
     <>
       <MessageModal
-        open={true}
+        open={dataState.messageModal}
         okCancel={handleMessageModal}
         message={dataState.message}
         btnText={resources?.ok}
