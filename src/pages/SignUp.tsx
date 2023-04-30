@@ -4,6 +4,7 @@ import { getLocalStorage } from "../helper/storage";
 import AuthLayout from "../layout/AuthLayout";
 import { HOME } from "../routes/path";
 import { StorageKeys } from "../util/storageKeys";
+import OfficeBg1 from "../assets/OfficeBg1.jpg";
 
 export const SignUp = () => {
   const { navigateToSpecificRoute } = useData();
@@ -14,7 +15,7 @@ export const SignUp = () => {
   };
   return (
     <AuthLayout
-      src='https://a.storyblok.com/f/189346/2048x800/63bbf306d7/charters-hero-compressed.png'
+      src={OfficeBg1}
       child={<SignUpForm />}
     />
   )
