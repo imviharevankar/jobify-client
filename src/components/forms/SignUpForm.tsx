@@ -13,6 +13,8 @@ import CustomInput from '../custom/CustomInput';
 import CustomSelect from '../custom/CustomSelect';
 import CustomButton from '../custom/CustomButton';
 import { SignUpSchema } from '../../util/formSchema';
+import { MIN_LENGTH_ONE } from '../../util/formConstants';
+import { validateMultiSelect } from '../../helper/validation';
 
 
 enum SignUpFormKeys {
@@ -20,6 +22,7 @@ enum SignUpFormKeys {
   LAST_NAME = 'lastName',
   EMAIL = 'email',
   LOCATION = 'location',
+  SKILLS = 'skills',
   PASSWORD = 'password',
 }
 
@@ -45,6 +48,7 @@ const SignUpForm = () => {
       lastName: '',
       email: '',
       location: '',
+      skills: [],
       password: '',
     },
     validationSchema: Yup.object({
@@ -52,6 +56,7 @@ const SignUpForm = () => {
       lastName: lastNameValidation(),
       email: emailValidation(),
       location: validateRequired(resources?.locationIsRequired),
+      skills: validateMultiSelect(MIN_LENGTH_ONE, resources?.skillIsRequired),
       password: passwordValidation(),
     }),
     onSubmit: async (values) => {
@@ -60,6 +65,7 @@ const SignUpForm = () => {
         lastName,
         email,
         location,
+        skills,
         password,
       } = values;
       const tokenBody = {
@@ -67,6 +73,7 @@ const SignUpForm = () => {
         lastName,
         email,
         location,
+        skills,
         password,
         isClient: ssrType === resources?.client ? true : false,
       }
@@ -134,6 +141,21 @@ const SignUpForm = () => {
           touched={signUpFormik.touched.location}
           error={signUpFormik.errors.location}
         />
+        {
+          !(ssrType === resources?.client)
+            ? <CustomSelect
+              label={resources?.skills}
+              name={SignUpFormKeys.SKILLS}
+              value={signUpFormik.values?.skills}
+              onChange={(option) => handleFormikChange(signUpFormik, SignUpFormKeys.SKILLS, option, true)}
+              error={signUpFormik.errors?.skills}
+              touched={signUpFormik.touched?.skills}
+              required={false}
+              mode='multiple'
+              options={[{ label: 'React', value: 'React' }, { label: 'Java', value: 'Java' }]}
+            />
+            : ''
+        }
         <CustomInput
           value={signUpFormik.values.password}
           name={SignUpFormKeys.PASSWORD}

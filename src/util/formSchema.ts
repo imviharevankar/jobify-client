@@ -8,6 +8,7 @@ export type SignUpSchema = {
   lastName: string,
   email: string,
   password: string,
+  skills: string[],
   location: string,
 }
 
@@ -18,4 +19,5 @@ export type JobFormSchema = {
   location: string,
   skills: string[],
   timeline: string,
+  amount: number,
 }

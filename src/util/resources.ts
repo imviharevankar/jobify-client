@@ -53,5 +53,10 @@ export const resources = {
   amountEarned: "Amount Earned",
   amountSpent: "Amount Spent",
   amountOnhold: "Amount On-hold",
-  memberSince: 'Member Since'
+  memberSince: 'Member Since',
+  amountIsRequired: 'Amount is required',
+  amountLengthMsg: 'Entered amount must contain',
+  invalidAmount: 'Invalid amount',
+  digits: 'digits',
+  amount: 'Amount',
 }

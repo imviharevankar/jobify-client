@@ -3,14 +3,15 @@ import { Col, Row } from 'antd';
 import { resources } from '../../util/resources';
 import CustomInput from '../custom/CustomInput';
 import CustomSelect from '../custom/CustomSelect';
-import { validateMultiSelect, validateRequired } from '../../helper/validation';
+import { validateMultiSelect, validateRequired, validateRequiredString } from '../../helper/validation';
 import { useFormik } from 'formik';
 import CustomButton from '../custom/CustomButton';
 import { useData } from '../../context/DataContext';
 import { JobFormSchema } from '../../util/formSchema';
 import { axiosPost } from '../../service/https.service';
 import { JOB_LISTING_URL } from '../../api/api';
-import { MIN_LENGTH_ONE } from '../../util/formConstants';
+import { FormConstants, MIN_LENGTH_ONE } from '../../util/formConstants';
+import { NUMBER_REGEX } from '../../util/regexKeys';
 
 enum JobFormKeys {
   TITLE = 'title',
@@ -19,6 +20,7 @@ enum JobFormKeys {
   LOCATION = 'location',
   SKILLS = 'skills',
   TIME_LINE = 'timeline',
+  AMOUNT = 'amount',
 }
 
 export const JobForm = () => {
@@ -30,8 +32,9 @@ export const JobForm = () => {
       category: '',
       description: '',
       location: '',
-      skills: [''],
+      skills: [],
       timeline: '',
+      amount: 0,
     },
     validationSchema: Yup.object({
       title: validateRequired(resources?.titleIsRequired),
@@ -40,6 +43,14 @@ export const JobForm = () => {
       location: validateRequired(resources?.locationIsRequired),
       skills: validateMultiSelect(MIN_LENGTH_ONE, resources?.skillIsRequired),
       timeline: validateRequired(resources?.timeLineIsRequired),
+      amount: validateRequiredString(
+        resources.amountIsRequired,
+        resources.invalidAmount,
+        NUMBER_REGEX,
+        FormConstants.MIN_AMOUNT_LENGTH,
+        FormConstants.MAX_AMOUNT_LENGTH,
+        `${resources.amountLengthMsg} ${FormConstants.MIN_AMOUNT_LENGTH} - ${FormConstants.MAX_AMOUNT_LENGTH} ${resources.digits}`
+      ),
     }),
     onSubmit: async (values) => {
       const {
@@ -49,6 +60,7 @@ export const JobForm = () => {
         location,
         skills,
         timeline,
+        amount,
       } = values;
       try {
         const requestBody = {
@@ -58,6 +70,7 @@ export const JobForm = () => {
           location,
           skills,
           timeline,
+          amount,
           createdBy: 'vihar205@gmail.com',
         }
         const response = await axiosPost(JOB_LISTING_URL, requestBody);
@@ -94,7 +107,7 @@ export const JobForm = () => {
               required={false}
             />
           </Col>
-          <Col md={12} sm={12} xs={12}>
+          <Col md={24} sm={24} xs={24}>
             <CustomInput
               label={resources?.description}
               name={JobFormKeys.DESCRIPTION}
@@ -140,6 +153,18 @@ export const JobForm = () => {
               onChange={jobFormik.handleChange}
               onBlur={jobFormik.handleBlur}
               touched={jobFormik.touched.timeline}
+              required={false}
+            />
+          </Col>
+          <Col md={12} sm={12} xs={12}>
+            <CustomInput
+              label={resources?.amount}
+              name={JobFormKeys.AMOUNT}
+              value={jobFormik.values.amount}
+              error={jobFormik.errors.amount}
+              onChange={jobFormik.handleChange}
+              onBlur={jobFormik.handleBlur}
+              touched={jobFormik.touched.amount}
               required={false}
             />
           </Col>
