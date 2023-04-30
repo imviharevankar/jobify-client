@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import { createContext, ReactNode, useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router";
 import { DataActionKeys, DataActionType, DataStateType } from "./type/dataContext";
 import { axiosGet } from "../service/https.service";
@@ -9,6 +9,7 @@ import { HttpStatus } from "../api/httpsStatus";
 import { FormikProps } from "formik";
 import { ChangeEvent } from 'react';
 import { JobFormSchema, SignUpSchema } from "../util/formSchema";
+import { getSelectOptions } from "../helper/objectFormatter";
 
 interface IDataContext {
   children: ReactNode,
@@ -17,8 +18,9 @@ interface IDataContext {
 const dataInitialState: DataStateType = {
   test: "test",
   jobList: [],
-  skills: { label: '', value: '' },
-  location: { label: '', value: '' },
+  skills: [],
+  location: [],
+  categories: [],
 };
 
 const dataReducer = (state: DataStateType, action: DataActionType): DataStateType => {
@@ -35,11 +37,11 @@ const dataReducer = (state: DataStateType, action: DataActionType): DataStateTyp
         ...state,
         jobList: payload,
       }
-    // case DataActionKeys.SKILLS:
-    //   return {
-    //     ...state,
-    //     [action.payload]: action.payload,
-    //   }
+    case DataActionKeys.SKILLS:
+      return {
+        ...state,
+        skills: payload,
+      }
     default:
       return state;
   };
@@ -58,7 +60,7 @@ const DataContext = createContext(
       _touched: boolean) => { },
     navigateRouteWithState: (_path: string, _state: object) => { },
     navigateRouteWithQuery: (_path: string, _search: string) => { },
-    fetchDropdownList: () => { },
+    // fetchDropdownList: () => { },
   }
 );
 
@@ -113,11 +115,13 @@ const DataContextProvider = (props: IDataContext) => {
   }
 
   const fetchDropdownList = async () => {
-    const response = await axiosGet(DROPDOWN_URL)
-    console.log(response);
     try {
+      const response = await axiosGet(DROPDOWN_URL)
       if (response?.status === HttpStatus.OK) {
-        return response?.data
+        const data = response.data;
+        dataDispatcher({ type: DataActionKeys.SKILLS, payload: getSelectOptions(data, "skills") });
+        dataDispatcher({ type: DataActionKeys.LOCATION, payload: getSelectOptions(data, "location") });
+        dataDispatcher({ type: DataActionKeys.CATEGORIES, payload: getSelectOptions(data, "categories") });
       }
     } catch (error) {
       console.log(error);
@@ -134,8 +138,11 @@ const DataContextProvider = (props: IDataContext) => {
     handleFormikChange,
     navigateRouteWithState,
     navigateRouteWithQuery,
-    fetchDropdownList,
   };
+
+  useEffect(() => {
+    fetchDropdownList();
+  }, []);
 
   return (
     <DataContext.Provider value={values}>
