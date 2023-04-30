@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { SIGN_IN } from "./path";
 
 const ProtectedRoute: FC = () => {
-  const authUser = false;
+  const authUser = true;
   return (
     <>
       {
