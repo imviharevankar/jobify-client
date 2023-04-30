@@ -8,33 +8,45 @@ import "./scss/margin.scss";
 import "./scss/hover.scss";
 import "./scss/border.scss";
 import "./scss/colors.scss";
+import "./scss/table.scss";
 import "./global.scss";
 import CommonLayout from './layout/CommonLayout';
 import { IRoutes, routes } from './routes/routes';
 import ProtectedRoute from './routes/ProtectedRoute';
+import { Suspense } from 'react';
+import { Spin } from 'antd';
 
 function App() {
 
   return (
-    <Routes>
-      {
-        routes.map((route: IRoutes) => (
-          route.isPrivate
-            ? (
-              <Route element={<ProtectedRoute />}>
-                <Route
-                  path={route.path}
-                  element={<CommonLayout child={< route.element />} />}
-                />
-              </Route>
-            )
-            : <Route
-              path={route.path}
-              element={<CommonLayout child={< route.element />} />}
-            />
-        ))
-      }
-    </Routes>
+    <Suspense fallback={
+      <div className='flex column col_center row_center vh_100'>
+        <Spin
+          tip="Loading"
+          size="large"
+        />
+      </div>
+    } >
+      <Routes>
+        {
+          routes.map((route: IRoutes) => (
+            route.isPrivate
+              ? (
+                <Route element={<ProtectedRoute />}>
+                  <Route
+                    path={route.path}
+                    element={<CommonLayout child={< route.element />} />}
+                  />
+                </Route>
+              )
+              : <Route
+                path={route.path}
+                element={<CommonLayout child={< route.element />} />}
+              />
+          ))
+        }
+      </Routes>
+    </Suspense>
   );
 }
 

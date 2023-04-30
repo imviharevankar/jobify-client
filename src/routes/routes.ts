@@ -1,11 +1,13 @@
-import { FC } from "react";
+import { FC, lazy } from "react";
 import Home from "../pages/Home";
 import { HOME, PROFILE, SEARCH, SIGN_IN, SIGN_UP, JOB_DETAILS } from "./path";
-import Search from "../pages/Search";
-import Profile from "../pages/Profile";
-import SignUp from "../pages/SignUp";
-import SignIn from "../pages/SignIn";
-import JobDetails from "../pages/JobDetails";
+
+
+const Search = lazy(() => import("../pages/SignUp"));
+const Profile = lazy(() => import("../pages/Profile"));
+const SignUp = lazy(() => import("../pages/SignUp"));
+const SignIn = lazy(() => import("../pages/SignIn"));
+const JobDetails = lazy(() => import("../pages/JobDetails"));
 
 export interface IRoutes {
   element: FC,
