@@ -10,3 +10,5 @@ export const CLIENT_SEARCH = `${BASE_URL}/users/search`;
 export const FREELANCER_SEARCH = `${BASE_URL}/jobs/search`;
 export const DROPDOWN_URL = `${BASE_URL}/dropdown`;
 export const USER_URL = `${BASE_URL}/user`;
+export const CREATE_ORDER_ID = `${BASE_URL}/payment/create-order`;
+export const VERIFY_SIGNATURE_URL = `${BASE_URL}/payment/verify-signature`;
