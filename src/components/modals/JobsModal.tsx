@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
 import { Col, Row } from 'antd';
-import { ChangeEvent } from 'react';
 import { resources } from '../../util/resources';
 import CustomInput from '../custom/CustomInput';
 import CustomSelect from '../custom/CustomSelect';
 import { validateRequired } from '../../helper/validation';
 import { useFormik } from 'formik';
 import CustomButton from '../custom/CustomButton';
+import { useData } from '../../context/DataContext';
+import { JobFormSchema } from '../../util/formSchema';
 
 enum jobFormKeys {
   TITLE = 'title',
@@ -16,15 +17,8 @@ enum jobFormKeys {
   TIME_LINE = 'timeLine',
 }
 
-type JobFormSchema = {
-  title: string,
-  category: string,
-  description: string,
-  skills: string,
-  timeLine: string,
-}
-
 export const JobsModal = () => {
+  const { handleFormikChange } = useData();
   const jobFormik = useFormik<JobFormSchema>({
     enableReinitialize: true,
     initialValues: {
@@ -45,10 +39,6 @@ export const JobsModal = () => {
       console.log(values);
     },
   });
-  const handleFormikChange = (value: ChangeEvent<HTMLInputElement> | string) => {
-    jobFormik.setFieldTouched(jobFormKeys.SKILLS, true);
-    jobFormik.setFieldValue(jobFormKeys.SKILLS, value);
-  }
   return (
     <>
       <form onSubmit={jobFormik.handleSubmit}>
@@ -93,7 +83,7 @@ export const JobsModal = () => {
               label={resources?.skills}
               name={jobFormKeys.SKILLS}
               value={jobFormik?.values?.skills}
-              onChange={(option) => handleFormikChange(option)}
+              onChange={(option) => handleFormikChange(jobFormik, jobFormKeys.SKILLS, option, true)}
               error={jobFormik.errors?.skills}
               touched={jobFormik.touched?.skills}
               required={false}

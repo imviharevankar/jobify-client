@@ -3,6 +3,9 @@
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import { useNavigate } from "react-router";
 import { DataActionKeys, DataActionType, DataStateType } from "./type/dataContext";
+import { FormikProps } from "formik";
+import { ChangeEvent } from 'react';
+import { JobFormSchema, SignUpSchema } from "../util/formSchema";
 
 interface IDataContext {
   children: ReactNode,
@@ -31,11 +34,11 @@ const DataContext = createContext(
     dataDispatcher: (_data: DataActionType) => { },
     navigateToSpecificRoute: (_path: string) => { },
     // getAuthToken: () => { },
-    // handleFormikChange: (
-    //   _formik: FormikProps<SignUpSchema> | FormikProps<CommercialSearchPanelSchema> | FormikProps<UserFormSchema>,
-    //   _key: string,
-    //   _value: ChangeEvent<HTMLInputElement> | string,
-    //   _touched: boolean) => { },
+    handleFormikChange: (
+      _formik: FormikProps<SignUpSchema> | FormikProps<JobFormSchema>,
+      _key: string,
+      _value: ChangeEvent<HTMLInputElement> | string,
+      _touched: boolean) => { },
     navigateRouteWithState: (_path: string, _state: object) => { },
   }
 );
@@ -73,22 +76,22 @@ const DataContextProvider = (props: IDataContext) => {
   //   }
   // }
 
-  // const handleFormikChange = (
-  //   formik: FormikProps<SignUpSchema> | FormikProps<CommercialSearchPanelSchema> | FormikProps<UserFormSchema>,
-  //   key: string,
-  //   value: ChangeEvent<HTMLInputElement> | string,
-  //   touched: boolean,
-  // ) => {
-  //   formik.setFieldTouched(key, touched);
-  //   formik.setFieldValue(key, value);
-  // }
+  const handleFormikChange = (
+    formik: FormikProps<SignUpSchema> | FormikProps<JobFormSchema>,
+    key: string,
+    value: ChangeEvent<HTMLInputElement> | string,
+    touched: boolean,
+  ) => {
+    formik.setFieldTouched(key, touched);
+    formik.setFieldValue(key, value);
+  }
 
   const values = {
     dataState,
     dataDispatcher,
     navigateToSpecificRoute,
     // getAuthToken,
-    // handleFormikChange,
+    handleFormikChange,
     navigateRouteWithState,
   };
 
