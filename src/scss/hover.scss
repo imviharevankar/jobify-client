@@ -5,3 +5,7 @@
   color: $white !important;
   background-color: $primary;
 }
+
+.hover_card_primary:hover .b_2_solid_black {
+  border-color: $white;
+}

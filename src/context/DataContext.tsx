@@ -42,6 +42,16 @@ const dataReducer = (state: DataStateType, action: DataActionType): DataStateTyp
         ...state,
         skills: payload,
       }
+    case DataActionKeys.LOCATION:
+      return {
+        ...state,
+        location: payload,
+      }
+    case DataActionKeys.CATEGORIES:
+      return {
+        ...state,
+        categories: payload,
+      }
     default:
       return state;
   };

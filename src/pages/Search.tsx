@@ -11,16 +11,38 @@ import Loader from "../components/Loader";
 import { useData } from "../context/DataContext";
 import { DataActionKeys } from "../context/type/dataContext";
 import { sortItem } from "../helper/arrayFormater";
+import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
   const { dataDispatcher, dataState } = useData();
-  const [loader, setLoader] = useState<boolean>(true)
+  const [queryParameters] = useSearchParams();
+  const [loader, setLoader] = useState<boolean>(true);
+  const jobCategory = queryParameters.get("id");
+  const filterData = (arr: any[], filterBody: any) => {
+    const filterDataArr = [];
+    if (!filterBody.length) {
+      return arr;
+    }
+    for (let i = 0; i < arr.length; i += 1) {
+      if (filterBody.includes(arr?.[i]?.category) && filterBody.length) {
+        filterDataArr.push(arr?.[i]);
+      }
+    }
+    return filterDataArr;
+  }
+
   const fetchJobList = async () => {
     try {
       setLoader(true);
       const response = await axiosGet(JOB_LISTING_URL);
       if (response?.status === HttpStatus.OK) {
-        (dataDispatcher({ type: DataActionKeys.JOB_LIST, payload: sortItem(response?.data, ["timeline"], ["asc"]) }));
+        console.log(sortItem(response?.data, ["timeline"], ["asc"]).filter((ele: any) => ele?.skill?.[0] === jobCategory), "pp");
+        if (!jobCategory) {
+          (dataDispatcher({ type: DataActionKeys.JOB_LIST, payload: sortItem(response?.data, ["timeline"], ["asc"]) }));
+        } else {
+          filterData(response?.data, [jobCategory])
+          console.log(response?.data, jobCategory, "iii");
+        }
         setLoader(false);
       }
     } catch (error) {
@@ -48,7 +70,12 @@ const Search = () => {
             <FilterPanel />
           </Col>
           <Col xs={24} sm={24} md={16}>
-            <JobListingPanel jobList={dataState.jobList} />
+            {
+              dataState.jobList?.length
+
+                ? <JobListingPanel jobList={dataState.jobList} />
+                : <p className="flex col_center row_center mt_16 fs_30 fw_500 font_primary">NO Data</p>
+            }
           </Col>
         </Row>
       </div>
