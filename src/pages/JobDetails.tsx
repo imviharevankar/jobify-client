@@ -23,11 +23,7 @@ const JobDetails = () => {
 
   const fetchJobDescription = async () => {
     try {
-      // const response = await axiosGet(`${JOB_LISTING_URL}/${jobId}`);
-      const response = await axiosGet(`${JOB_LISTING_URL}/ec74c87b-f481-4fd0-9a34-e4ff8aa08cd9`);
-
-      
-      console.log(response);
+      const response = await axiosGet(`${JOB_LISTING_URL}/${jobId}`);
       if (response?.status === HttpStatus.OK) {
         setJobDetails(response?.data);
         setLoader(false);
