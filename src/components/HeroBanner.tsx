@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import CustomCarousel from './custom/CustomCarousel';
-import OfficeBg1 from "../assets/officeBg1.jpg";
-import OfficeBg2 from "../assets/officeBg2.jpg";
+import OfficeBg1 from "../assets/OfficeBg1.jpg";
+import OfficeBg2 from "../assets/OfficeBg2.jpg";
 import SearchWidget from './SearchWidget';
 
 
