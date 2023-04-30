@@ -1,4 +1,4 @@
-import { Col, Drawer, Row } from "antd";
+import { Col, Row } from "antd";
 import { useState } from "react";
 import Jobify from "../assets/Jobify.png";
 import { resources } from "../util/resources";

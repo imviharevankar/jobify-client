@@ -2,7 +2,7 @@ import { FC } from "react";
 import IconCard from "./IconCard";
 import { RiReactjsFill } from 'react-icons/ri';
 import { BsClipboard2DataFill, BsFillClipboard2CheckFill } from "react-icons/bs";
-import { DiJavascript1, DiCode, DiAngularSimple } from 'react-icons/di';
+import { DiJavascript1, DiCode } from 'react-icons/di';
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Row, Col } from "antd";
 import { useData } from "../context/DataContext";

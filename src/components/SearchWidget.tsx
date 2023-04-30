@@ -10,8 +10,8 @@ import { CLIENT_SEARCH, FREELANCER_SEARCH } from "../api/api";
 import { validateMultiSelect } from "../helper/validation";
 import { useData } from "../context/DataContext";
 import { SEARCH } from "../routes/path";
-import { HttpStatus } from "../api/httpsStatus";
-import { DataActionKeys } from "../context/type/dataContext";
+// import { HttpStatus } from "../api/httpsStatus";
+// import { DataActionKeys } from "../context/type/dataContext";
 
 enum SearchWidgetKeys {
   SKILLS = "skills",
@@ -20,7 +20,7 @@ enum SearchWidgetKeys {
 
 const SearchWidget: FC = () => {
   const isClient = false;
-  const { dataState, dataDispatcher, navigateToSpecificRoute } = useData();
+  const { dataState, navigateToSpecificRoute } = useData();
 
   const searchWidgetFormik = useFormik({
     enableReinitialize: true,
@@ -46,12 +46,12 @@ const SearchWidget: FC = () => {
     }
   });
 
-  const fetchDetails = async (api: string) => {
-    const response = await axiosPost(api, searchWidgetFormik.values);
-    if (response?.status === HttpStatus.OK) {
-      dataDispatcher({ type: DataActionKeys.JOB_LIST, payload: response?.data })
-    }
-  }
+  // const fetchDetails = async (api: string) => {
+  //   const response = await axiosPost(api, searchWidgetFormik.values);
+  //   if (response?.status === HttpStatus.OK) {
+  //     dataDispatcher({ type: DataActionKeys.JOB_LIST, payload: response?.data })
+  //   }
+  // }
 
   const handleFormikChange = (key: string, value: ChangeEvent<HTMLInputElement> | string) => {
     searchWidgetFormik.setFieldTouched(key, true);
