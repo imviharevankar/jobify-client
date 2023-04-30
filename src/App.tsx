@@ -15,18 +15,13 @@ import CommonLayout from './layout/CommonLayout';
 import { IRoutes, routes } from './routes/routes';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { Suspense } from 'react';
-import { Spin } from 'antd';
+import CustomSpinner from './components/custom/CustomSpinner';
 
 function App() {
 
   return (
     <Suspense fallback={
-      <div className='flex column col_center row_center vh_100'>
-        <Spin
-          tip="Loading"
-          size="large"
-        />
-      </div>
+      <CustomSpinner />
     } >
       <Routes>
         {
