@@ -15,6 +15,7 @@ export type JobFormSchema = {
   title: string,
   category: string,
   description: string,
-  skills: string,
-  timeLine: string,
+  location: string,
+  skills: string[],
+  timeline: string,
 }

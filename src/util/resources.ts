@@ -15,6 +15,7 @@ export const resources = {
   sortBy: 'Sort by',
   time: 'Time',
   price: 'Price',
+  locationIsRequired: 'Location is required',
   signIn: "Sign In",
   password: "Password",
   email: "Email",
@@ -36,7 +37,12 @@ export const resources = {
   lastName: 'Last Name',
   client: 'Client',
   freelancer: 'Freelancer',
-  locationIsRequired: 'Location required',
   signUp: 'Sign Up',
   submit: 'Submit',
+   jobDetails: "Job Details",
+  catagory: "Catagory",
+  createdAt: "Created at",
+  updatedAt: "Updated at",
+  talkToClient: "Talk to client",
+
 }
