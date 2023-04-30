@@ -29,8 +29,6 @@ const PublicProfile = () => {
     }
   }
 
-  console.log(profileData);
-
   useEffect(() => {
     fetchPublicProfile();
   }, []);

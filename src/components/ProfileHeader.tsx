@@ -24,6 +24,8 @@ declare global {
   }
 }
 
+console.log(window.Razorpay);
+
 const ProfileHeader = (props: ProfileHeaderProps) => {
   const { name, email, website, location, displayLogOut, displayHireMe } = props;
 
@@ -36,7 +38,7 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
   const loadScript = (src: any): Promise<any> => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
-      script.src = src;
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
       script.onload = () => {
         resolve(true);
       };
@@ -72,9 +74,8 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
         // After receiving razorpay signature, call backend API to confirm
         if (res?.razorpay_signature) {
           const signatureResponse: any = await axiosPost(VERIFY_SIGNATURE_URL, res);
-          console.log(signatureResponse);
-          if (signatureResponse?.data?.res) {
-
+          if (signatureResponse?.data?.res?.sucess) {
+            // close modal
           }
         }
       },
