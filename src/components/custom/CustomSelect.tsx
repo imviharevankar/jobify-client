@@ -13,13 +13,14 @@ interface ICustomSelect {
   name?: string,
   label?: string,
   required?: boolean,
-  value: string | number,
+  value: string | number | string[],
   options?: ISelectOption[],
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined,
   className?: string,
   disabled?: boolean,
   touched?: boolean | undefined,
-  error?: string | undefined,
+  error?: string | undefined | string[],
+  mode?: "multiple" | "tags" | undefined,
 }
 
 const CustomSelect: FC<ICustomSelect> = (
@@ -33,6 +34,7 @@ const CustomSelect: FC<ICustomSelect> = (
     touched,
     required = true,
     error,
+    mode = undefined,
   },
 ) => {
   console.group(value);
@@ -40,6 +42,7 @@ const CustomSelect: FC<ICustomSelect> = (
     <>
       <FormLabel label={label} required={required} />
       <Select
+        mode={mode}
         className={cx('w_100', className)}
         onChange={onChange}
         disabled={disabled}
