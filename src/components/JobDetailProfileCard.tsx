@@ -3,6 +3,9 @@ import { MailOutlined } from "@ant-design/icons";
 import { resources } from "../util/resources";
 import DetailsContainer from "./DetailsContainer";
 import CustomButton from "./custom/CustomButton";
+import { useData } from "../context/DataContext";
+import { DataActionKeys } from "../context/type/dataContext";
+import { SUCCESS } from "../util/constants";
 
 interface IJobDetaiProfileCard {
   jobDetails: any,
@@ -10,6 +13,14 @@ interface IJobDetaiProfileCard {
 
 const JobDetailProfileCard = (props: IJobDetaiProfileCard) => {
   const { jobDetails } = props;
+  const { dataDispatcher } = useData();
+
+  const handleMessageModal = (): void => {
+    dataDispatcher({ type: DataActionKeys.MESSAGE_MODAL, payload: true });
+    dataDispatcher({ type: DataActionKeys.MESSAGE, payload: `Mail has been sent to ${jobDetails?.createdBy}` });
+    dataDispatcher({ type: DataActionKeys.API_STATUS, payload: SUCCESS });
+  };
+
   return (
     <div className="bg_white flex justify_between wrap col_center mt_12 p_16 br_8_0_8_8">
       <div className="flex g_16 mb_20 col_center">
@@ -25,6 +36,7 @@ const JobDetailProfileCard = (props: IJobDetaiProfileCard) => {
         className="white bg_primary"
         icon={<MailOutlined />}
         label={resources.talkToClient}
+        onClick={handleMessageModal}
       />
       <div className="flex g_16">
         <DetailsContainer

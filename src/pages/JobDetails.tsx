@@ -1,29 +1,36 @@
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { axiosGet } from "../service/https.service";
-import Loader from "../components/Loader";
 import { JOB_LISTING_URL } from "../api/api";
 import { HttpStatus } from "../api/httpsStatus";
 import { Col, Row } from "antd";
 import JobDetailProfileCard from "../components/JobDetailProfileCard";
 import JobDetailsPanel from "../components/JobDetailsPanel";
 import { resources } from "../util/resources";
+import CustomSpinner from "../components/custom/CustomSpinner";
+import { useData } from "../context/DataContext";
+import { HOME } from "../routes/path";
 
 const JobDetails = () => {
   const [queryParameters] = useSearchParams();
+  const { navigateToSpecificRoute } = useData();
+
   const [loader, setLoader] = useState<boolean>(true);
+
   const [jobDetails, setJobDetails] = useState<any>({});
+
   let jobId = queryParameters.get("id");
+
   const fetchJobDescription = async () => {
     try {
       const response = await axiosGet(`${JOB_LISTING_URL}/${jobId}`);
-      console.log(response);
       if (response?.status === HttpStatus.OK) {
         setJobDetails(response?.data);
         setLoader(false);
       }
     } catch (error) {
       setLoader(false);
+      navigateToSpecificRoute(HOME);
     }
   }
 
@@ -33,7 +40,7 @@ const JobDetails = () => {
 
   if (loader) {
     return (
-      <Loader />
+      <CustomSpinner />
     )
   }
   return (
