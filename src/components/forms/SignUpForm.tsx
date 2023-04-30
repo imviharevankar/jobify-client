@@ -15,6 +15,10 @@ import CustomButton from '../custom/CustomButton';
 import { SignUpSchema } from '../../util/formSchema';
 import { MIN_LENGTH_ONE } from '../../util/formConstants';
 import { validateMultiSelect } from '../../helper/validation';
+import { HttpStatus } from '../../api/httpsStatus';
+import { HOME } from '../../routes/path';
+import { setLocalStorage } from '../../helper/storage';
+import { StorageKeys } from '../../util/storageKeys';
 
 
 enum SignUpFormKeys {
@@ -27,7 +31,7 @@ enum SignUpFormKeys {
 }
 
 const SignUpForm = () => {
-  const { handleFormikChange } = useData();
+  const { handleFormikChange, navigateToSpecificRoute } = useData();
   const [ssrType, setSsrType] = useState<string>(resources?.client);
 
   const ssrTypeList = [
@@ -80,7 +84,10 @@ const SignUpForm = () => {
       try {
         const token = encodeJwt(tokenBody);
         const response = await axiosPost(SIGN_UP_URL, { token });
-        console.log(response);
+        if (response.status === HttpStatus.OK) {
+          navigateToSpecificRoute(HOME);
+          setLocalStorage(StorageKeys.AUTH_USER, response?.data?.token);
+        }
       } catch (error) {
         console.log(error);
       }

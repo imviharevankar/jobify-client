@@ -45,7 +45,6 @@ const SignInForm = () => {
           navigateToSpecificRoute(HOME);
           setLocalStorage(StorageKeys.AUTH_USER, response?.data?.token);
         }
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
