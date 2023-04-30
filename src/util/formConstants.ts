@@ -14,4 +14,6 @@ export enum FormConstants {
   TEAM_MAX_LENGTH = 25,
   INPUT_MIN_LENGTH = 3,
   INPUT_MAX_LENGTH = 100,
+  MIN_AMOUNT_LENGTH = 4,
+  MAX_AMOUNT_LENGTH = 5,
 }
