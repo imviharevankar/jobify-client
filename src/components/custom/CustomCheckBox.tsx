@@ -5,12 +5,11 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 interface ICustomCheckBox {
   label: string,
   className?: string,
+  onChange?: (e: CheckboxChangeEvent) => void,
 }
 const CustomCheckBox: FC<ICustomCheckBox> = (props: ICustomCheckBox) => {
-  const { label, className } = props
-  const onChange = (e: CheckboxChangeEvent) => {
-    console.log(`checked = ${e.target.checked}`);
-  };
+  const { label, className, onChange } = props
+
   return (
     <Checkbox onChange={onChange} className={className}>{label}</Checkbox>
   );

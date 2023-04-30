@@ -3,16 +3,23 @@
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import { useNavigate } from "react-router";
 import { DataActionKeys, DataActionType, DataStateType } from "./type/dataContext";
+import { axiosGet } from "../service/https.service";
+import { DROPDOWN_URL } from "../api/api";
+import { HttpStatus } from "../api/httpsStatus";
 
 interface IDataContext {
   children: ReactNode,
 };
 
 const dataInitialState: DataStateType = {
-  test: "test"
+  test: "test",
+  jobList: [],
+  skills: { label: '', value: '' },
+  location: { label: '', value: '' },
 };
 
 const dataReducer = (state: DataStateType, action: DataActionType): DataStateType => {
+
   const { type, payload } = action;
   switch (type) {
     case DataActionKeys.TEST:
@@ -20,6 +27,16 @@ const dataReducer = (state: DataStateType, action: DataActionType): DataStateTyp
         ...state,
         test: payload,
       };
+    case DataActionKeys.JOB_LIST:
+      return {
+        ...state,
+        jobList: payload,
+      }
+    // case DataActionKeys.SKILLS:
+    //   return {
+    //     ...state,
+    //     [action.payload]: action.payload,
+    //   }
     default:
       return state;
   };
@@ -38,6 +55,7 @@ const DataContext = createContext(
     //   _touched: boolean) => { },
     navigateRouteWithState: (_path: string, _state: object) => { },
     navigateRouteWithQuery: (_path: string, _search: string) => { },
+    fetchDropdownList: () => { },
   }
 );
 
@@ -91,6 +109,20 @@ const DataContextProvider = (props: IDataContext) => {
   //   formik.setFieldValue(key, value);
   // }
 
+  const fetchDropdownList = async () => {
+    const response = await axiosGet(DROPDOWN_URL)
+    console.log(response);
+    try {
+      if (response?.status === HttpStatus.OK) {
+        return response?.data
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
   const values = {
     dataState,
     dataDispatcher,
@@ -99,6 +131,7 @@ const DataContextProvider = (props: IDataContext) => {
     // handleFormikChange,
     navigateRouteWithState,
     navigateRouteWithQuery,
+    fetchDropdownList,
   };
 
   return (
