@@ -1,6 +1,5 @@
 import { Modal } from 'antd';
 import { ReactElement, ReactNode } from 'react';
-import './CustomModal.scss';
 
 interface ICustomModal {
   open: boolean,
