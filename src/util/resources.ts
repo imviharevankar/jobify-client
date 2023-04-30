@@ -33,5 +33,10 @@ export const resources = {
   passwordLengthMsg: 'Password must contain',
   invalidPassword: 'Invalid password',
   passwordIsRequired: 'Password is required',
+   jobDetails: "Job Details",
+  catagory: "Catagory",
+  createdAt: "Created at",
+  updatedAt: "Updated at",
+  talkToClient: "Talk to client",
 
 }

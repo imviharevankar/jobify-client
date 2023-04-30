@@ -1,11 +1,14 @@
 import { FC } from "react";
 import CustomButton from "./custom/CustomButton";
+import { JOB_DETAILS } from "../routes/path";
+import { useData } from "../context/DataContext";
 
 interface IJobListingCard {
   title: string,
   createdBy: string,
   skills: string[],
   timeline: string,
+  jobId: string,
 }
 const JobListingCard: FC<IJobListingCard> = (props: IJobListingCard) => {
   const {
@@ -13,7 +16,14 @@ const JobListingCard: FC<IJobListingCard> = (props: IJobListingCard) => {
     createdBy,
     skills,
     timeline,
-  } = props
+    jobId,
+  } = props;
+  const { navigateRouteWithQuery } = useData();
+
+  const navigateToJobDetails = () => {
+    navigateRouteWithQuery(JOB_DETAILS, `id=${jobId}`)
+  }
+
   return (
     <div className="bg_white mb_12 p_16 br_16_0_16_16">
       <div className="flex justify_between col_center align_center">
@@ -29,6 +39,7 @@ const JobListingCard: FC<IJobListingCard> = (props: IJobListingCard) => {
         <div>
           <CustomButton
             label="Apply"
+            onClick={navigateToJobDetails}
             className="bg_primary font_primary white br_0"
           />
         </div>

@@ -37,6 +37,7 @@ const DataContext = createContext(
     //   _value: ChangeEvent<HTMLInputElement> | string,
     //   _touched: boolean) => { },
     navigateRouteWithState: (_path: string, _state: object) => { },
+    navigateRouteWithQuery: (_path: string, _search: string) => { },
   }
 );
 
@@ -51,6 +52,13 @@ const DataContextProvider = (props: IDataContext) => {
 
   const navigateToSpecificRoute = (path: string): void => {
     navigate(path);
+  };
+
+  const navigateRouteWithQuery = (path: string, search: string): void => {
+    navigate({
+      pathname: path,
+      search
+    });
   };
 
   const navigateRouteWithState = (path: string, state: object): void => {
@@ -90,6 +98,7 @@ const DataContextProvider = (props: IDataContext) => {
     // getAuthToken,
     // handleFormikChange,
     navigateRouteWithState,
+    navigateRouteWithQuery,
   };
 
   return (

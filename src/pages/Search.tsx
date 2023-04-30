@@ -29,11 +29,13 @@ const Search = () => {
   useEffect(() => {
     fetchJobList();
   }, []);
+
   if (loader) {
     return (
       <Loader />
     )
-  }
+  };
+  
   return (
     <div className="bg_gray">
       <div className="m_auto">
