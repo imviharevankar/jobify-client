@@ -9,9 +9,11 @@ interface CommonLayoutProps {
 const CommonLayout = (props: CommonLayoutProps) => {
   const { child } = props;
   return (
-    <div className='container'>
+    <div className='bg_gray'>
       <Header />
-      {child}
+      <div className='container'>
+        {child}
+      </div>
       <Footer />
     </div>
   )

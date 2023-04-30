@@ -6,7 +6,7 @@ import { Row, Col } from "antd";
 const JobCategoryPannel: FC = () => {
   return (
     <>
-      <p className="fs_30 fw_700 lh_20 font_primary">Explore by <span className="primary">category</span></p>
+      <p className="fs_30 fw_700 lh_20 font_primary mb_12">Explore by <span className="primary">category</span></p>
       <Row gutter={11}>
         <Col xs={12} md={6}>
           <IconCard

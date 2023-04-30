@@ -4,6 +4,7 @@ import CustomModal from "../components/custom/CustomModal";
 import JobsModal from "../components/modals/JobsModal";
 import CustomButton from "../components/custom/CustomButton";
 import { resources } from "../util/resources";
+import HeroBanner from "../components/HeroBanner";
 
 const Home: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -22,6 +23,7 @@ const Home: FC = () => {
         width={500}
         okCancel={handlepopup}
       />
+      <HeroBanner />
       <div className='flex justify_end mt_16'>
         <CustomButton
           label={resources?.postJob}
