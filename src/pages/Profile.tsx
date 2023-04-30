@@ -1,6 +1,16 @@
+import ProfileHeader from "../components/ProfileHeader";
+import ProjectList from "../components/tables/ProjectList";
+
 const Profile = () => {
   return (
-    <div>Profile</div>
+    // ProfileHeader
+    // StatCard
+    // ProjectList
+    // EditProfile
+    <div>
+      <ProfileHeader />
+      <ProjectList />
+    </div>
   )
 }
 

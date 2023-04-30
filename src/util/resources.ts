@@ -44,5 +44,7 @@ export const resources = {
   createdAt: "Created at",
   updatedAt: "Updated at",
   talkToClient: "Talk to client",
-
+  save: 'Save',
+  addJob: 'Add job',
+  postJob: 'Post job'
 }

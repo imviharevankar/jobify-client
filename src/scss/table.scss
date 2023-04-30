@@ -1,0 +1,27 @@
+@import "./variables";
+
+.ant-table {
+  .ant-table-thead {
+    .ant-table-cell {
+      text-align: center !important;
+      background-color: $primary !important;
+      font-family: $font-primary;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: 600;
+      color: $white;
+    }
+  }
+
+  .ant-table-tbody {
+    .ant-table-cell {
+      text-align: center !important;
+      font-family: $font-primary;
+      font-size: 0.9rem;
+      line-height: 1rem;
+      font-weight: 500;
+      color: $charcoal;
+      // border-bottom: 1px solid grey;
+    }
+  }
+}
