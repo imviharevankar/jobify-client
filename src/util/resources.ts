@@ -15,11 +15,7 @@ export const resources = {
   sortBy: 'Sort by',
   time: 'Time',
   price: 'Price',
-  jobDetails: "Job Details",
-  catagory: "Catagory",
-  createdAt: "Created at",
-  updatedAt: "Updated at",
-  talkToClient: "Talk to client",
+  locationIsRequired: 'Location is required',
   signIn: "Sign In",
   password: "Password",
   email: "Email",
@@ -37,5 +33,10 @@ export const resources = {
   passwordLengthMsg: 'Password must contain',
   invalidPassword: 'Invalid password',
   passwordIsRequired: 'Password is required',
+   jobDetails: "Job Details",
+  catagory: "Catagory",
+  createdAt: "Created at",
+  updatedAt: "Updated at",
+  talkToClient: "Talk to client",
 
 }

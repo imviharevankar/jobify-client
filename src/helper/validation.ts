@@ -39,6 +39,20 @@ export const validateRequired = (
     .required(requiredMsg)
 };
 
+export const validateMultiSelect = (min: number, requiredMsg: string) => {
+  return Yup.array().min(min, requiredMsg);
+}
+
+// export const firstNameValidation = () => {
+//   return validateRequiredString(
+//     resources.firstNameIsRequired,
+//     resources.invalidFirstName,
+//     ALPHA_REGEX,
+//     FormConstants.FIRST_NAME_MIN_LENGTH,
+//     FormConstants.FIRST_NAME_MAX_LENGTH,
+//     `${resources.firstNameLengthMsg} ${FormConstants.FIRST_NAME_MIN_LENGTH} - ${FormConstants.FIRST_NAME_MAX_LENGTH} ${resources.characters}`
+//   );
+// };
 export const firstNameValidation = () => {
   return validateRequiredString(
     resources.firstNameIsRequired,

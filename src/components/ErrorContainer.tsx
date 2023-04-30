@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 interface ErrorContainerProps {
   touched: boolean | undefined,
-  error: string | undefined,
+  error: string | undefined | string[],
 }
 
 const ErrorContainer: FC<ErrorContainerProps> = (props: ErrorContainerProps) => {

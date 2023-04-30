@@ -1,3 +1,5 @@
+export const form = 'form';
+export const MIN_LENGTH_ONE = 1;
 export enum FormConstants {
   EMAIL_MIN_LENGTH = 10,
   EMAIL_MAX_LENGTH = 130,
