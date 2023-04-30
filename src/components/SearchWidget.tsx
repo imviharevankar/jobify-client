@@ -8,6 +8,7 @@ import CustomButton from "./custom/CustomButton";
 import { axiosPost } from "../service/https.service";
 import { CLIENT_SEARCH, FREELANCER_SEARCH } from "../api/api";
 import { validateMultiSelect } from "../helper/validation";
+import { useData } from "../context/DataContext";
 
 enum SearchWidgetKeys {
   SKILLS = "skills",
@@ -16,6 +17,7 @@ enum SearchWidgetKeys {
 
 const SearchWidget: FC = () => {
   const isClient = false;
+  const { dataState } = useData();
 
   const searchWidgetFormik = useFormik({
     enableReinitialize: true,
@@ -65,7 +67,7 @@ const SearchWidget: FC = () => {
               touched={searchWidgetFormik.touched.skills}
               name={SearchWidgetKeys.SKILLS}
               onChange={(option) => handleFormikChange(SearchWidgetKeys.SKILLS, option,)}
-              options={[{ label: "React", value: "React" }, { label: "react", value: "react" }]}
+              options={dataState?.skills}
               error={searchWidgetFormik.errors.skills}
             />
           </Col>
@@ -76,7 +78,7 @@ const SearchWidget: FC = () => {
               name={SearchWidgetKeys.LOCATION}
               className="fs_20 font_primary"
               required={false}
-              options={[{ label: "india", value: "india" }]}
+              options={dataState?.location}
               onChange={(option) => handleFormikChange(SearchWidgetKeys.LOCATION, option,)}
             />
           </Col>
