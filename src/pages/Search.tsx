@@ -8,16 +8,19 @@ import { JOB_LISTING_URL } from "../api/api";
 import { useEffect } from "react";
 import { HttpStatus } from "../api/httpsStatus";
 import Loader from "../components/Loader";
+import { useData } from "../context/DataContext";
+import { DataActionKeys } from "../context/type/dataContext";
+import { sortItem } from "../helper/arrayFormater";
 
 const Search = () => {
-  const [jobList, setJobList] = useState<[]>([]);
+  const { dataDispatcher, dataState } = useData();
   const [loader, setLoader] = useState<boolean>(true)
   const fetchJobList = async () => {
     try {
       setLoader(true);
       const response = await axiosGet(JOB_LISTING_URL);
       if (response?.status === HttpStatus.OK) {
-        setJobList(response?.data);
+        (dataDispatcher({ type: DataActionKeys.JOB_LIST, payload: sortItem(response?.data, ["timeline"], ["asc"]) }));
         setLoader(false);
       }
     } catch (error) {
@@ -35,7 +38,7 @@ const Search = () => {
       <Loader />
     )
   };
-  
+
   return (
     <div className="bg_gray">
       <div className="m_auto">
@@ -45,7 +48,7 @@ const Search = () => {
             <FilterPanel />
           </Col>
           <Col xs={24} sm={24} md={16}>
-            <JobListingPanel jobList={jobList} />
+            <JobListingPanel jobList={dataState.jobList} />
           </Col>
         </Row>
       </div>

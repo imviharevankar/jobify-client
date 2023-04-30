@@ -44,6 +44,8 @@ export const resources = {
   createdAt: "Created at",
   updatedAt: "Updated at",
   talkToClient: "Talk to client",
+  skillsIsRequired: "Skills is required",
+  jobify: "Jobify",
   save: 'Save',
   addJob: 'Add job',
   postJob: 'Post job',
