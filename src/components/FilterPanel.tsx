@@ -11,7 +11,7 @@ const FilterPanel: FC = () => {
   let filterLabels = _.uniq(dataState.jobList.map((ele: any) => ele.category))
 
   const handleFilter = (e: CheckboxChangeEvent, key: string) => {
-    console.log(e);
+    console.log(e, key);
   }
   return (
     <div className="bg_white mx_12 p_16 br_16_0_16_16">
