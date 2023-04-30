@@ -6,6 +6,8 @@ export enum DataActionKeys {
   SKILLS = "skills",
   LOCATION = "location",
   CATEGORIES = "categories",
+  FILTER_DATA_ADD = 'filterDataAdd',
+  FILTER_DATA_REMOVE = 'filterDataRemove',
 };
 
 export type DataStateType = {
@@ -14,6 +16,7 @@ export type DataStateType = {
   skills: ISelectOption[],
   location: ISelectOption[],
   categories: ISelectOption[],
+  filterKey: string[],
 }
 
 export type DataActionType = { type: DataActionKeys.TEST, payload: string }
@@ -21,3 +24,5 @@ export type DataActionType = { type: DataActionKeys.TEST, payload: string }
   | { type: DataActionKeys.LOCATION, payload: { label: string, value: string }[] }
   | { type: DataActionKeys.CATEGORIES, payload: { label: string, value: string }[] }
   | { type: DataActionKeys.JOB_LIST, payload: any }
+  | { type: DataActionKeys.FILTER_DATA_ADD, payload: any }
+  | { type: DataActionKeys.FILTER_DATA_REMOVE, payload: any }
