@@ -6,6 +6,8 @@ import { useData } from "../context/DataContext";
 import { HOME } from "../routes/path";
 import { removeLocalStorage } from "../helper/storage";
 import { StorageKeys } from "../util/storageKeys";
+import { axiosPost } from "../service/https.service";
+import { CREATE_ORDER_ID, VERIFY_SIGNATURE_URL } from "../api/api";
 
 interface ProfileHeaderProps {
   name: string,
@@ -16,6 +18,14 @@ interface ProfileHeaderProps {
   displayHireMe: boolean,
 };
 
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+console.log(window.Razorpay);
+
 const ProfileHeader = (props: ProfileHeaderProps) => {
   const { name, email, website, location, displayLogOut, displayHireMe } = props;
 
@@ -25,6 +35,70 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
     removeLocalStorage(StorageKeys.AUTH_USER);
     navigateToSpecificRoute(HOME);
   };
+  const loadScript = (): Promise<any> => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+  const invokeRazorpayModal = async (amount: number, orderID: string) => {
+    console.log(amount, orderID);
+    // save order id to session storage
+    const response = await loadScript();
+    // Iframe Code of Razorpay starts from here
+    if (!response) {
+      alert("you are offline ... Failed to load Razorpay SDK");
+      return;
+    }
+    const options = {
+      key: 'rzp_test_51EZ1zxU862gz6',
+      currency: 'INR',
+      amount,
+      order_id: orderID,
+      prefill: {
+        email: 'hackthon@gmail.com',
+        contact: '9876543210',
+      },
+      modal: {
+        ondismiss: () => {
+        },
+      },
+      async handler(res: any) {
+        // After receiving razorpay signature, call backend API to confirm
+        if (res?.razorpay_signature) {
+          const signatureResponse: any = await axiosPost(VERIFY_SIGNATURE_URL, res);
+          if (signatureResponse?.data?.res?.sucess) {
+            // close modal
+          }
+        }
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
+  const handleRazorPay = async () => {
+    try {
+      // Create an order id for razorpay
+      const createOrderIDResponse: any = await axiosPost(CREATE_ORDER_ID, { amount: 100000 });
+      if (createOrderIDResponse?.status === 200) {
+        // invoking iframe with amount and order id as received from order id response
+        await invokeRazorpayModal(
+          createOrderIDResponse?.data?.amount,
+          createOrderIDResponse?.data?.orderId,
+        );
+      }
+    } catch (error: any) {
+      // triggerNavigation(PAYMENT_FAILED);
+    }
+  }
 
   return (
     <div className="box_shadow_sm br_16_0_16_16 p_16 flex col_center">
@@ -49,7 +123,9 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
         displayHireMe
           ? <CustomButton
             label={resources.hireMe}
-            className="ml_auto bg_primary h_max_content py_12_px_28 white fs_16 lh_16 font_primary" />
+            className="ml_auto bg_primary h_max_content py_12_px_28 white fs_16 lh_16 font_primary"
+            onClick={handleRazorPay}
+          />
           : <></>
       }
 
