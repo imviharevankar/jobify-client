@@ -20,6 +20,7 @@ export const resources = {
   createdAt: "Created at",
   updatedAt: "Updated at",
   talkToClient: "Talk to client",
+  locationIsRequired: 'Location is required',
   signIn: "Sign In",
   password: "Password",
   email: "Email",
