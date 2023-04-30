@@ -35,7 +35,7 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
     removeLocalStorage(StorageKeys.AUTH_USER);
     navigateToSpecificRoute(HOME);
   };
-  const loadScript = (src: any): Promise<any> => {
+  const loadScript = (): Promise<any> => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -51,7 +51,7 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
   const invokeRazorpayModal = async (amount: number, orderID: string) => {
     console.log(amount, orderID);
     // save order id to session storage
-    const response = await loadScript('rzp_test_51EZ1zxU862gz6');
+    const response = await loadScript();
     // Iframe Code of Razorpay starts from here
     if (!response) {
       alert("you are offline ... Failed to load Razorpay SDK");
@@ -87,7 +87,7 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
   const handleRazorPay = async () => {
     try {
       // Create an order id for razorpay
-      const createOrderIDResponse: any = await axiosPost(CREATE_ORDER_ID, { amount: 1000 });
+      const createOrderIDResponse: any = await axiosPost(CREATE_ORDER_ID, { amount: 100000 });
       if (createOrderIDResponse?.status === 200) {
         // invoking iframe with amount and order id as received from order id response
         await invokeRazorpayModal(
