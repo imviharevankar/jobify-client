@@ -38,5 +38,4 @@ export const resources = {
   passwordLengthMsg: 'Password must contain',
   invalidPassword: 'Invalid password',
   passwordIsRequired: 'Password is required',
-
 }
