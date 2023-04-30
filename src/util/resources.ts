@@ -61,4 +61,5 @@ export const resources = {
   invalidAmount: 'Invalid amount',
   digits: 'digits',
   amount: 'Amount',
+  ok: "OK",
 }

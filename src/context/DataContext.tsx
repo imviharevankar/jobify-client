@@ -21,6 +21,10 @@ const dataInitialState: DataStateType = {
   skills: [],
   location: [],
   categories: [],
+  filterKey: [],
+  messageModal: false,
+  message: '',
+  apiStatus: '',
 };
 
 const dataReducer = (state: DataStateType, action: DataActionType): DataStateType => {
@@ -51,6 +55,31 @@ const dataReducer = (state: DataStateType, action: DataActionType): DataStateTyp
       return {
         ...state,
         categories: payload,
+      }
+    case DataActionKeys.FILTER_DATA_ADD:
+      return {
+        ...state,
+        filterKey: [...state.filterKey, payload],
+      }
+    case DataActionKeys.FILTER_DATA_REMOVE:
+      return {
+        ...state,
+        filterKey: state.filterKey?.filter((item) => item === payload ? '' : item),
+      }
+    case DataActionKeys.MESSAGE_MODAL:
+      return {
+        ...state,
+        messageModal: payload,
+      };
+    case DataActionKeys.MESSAGE:
+      return {
+        ...state,
+        message: payload,
+      };
+    case DataActionKeys.API_STATUS:
+      return {
+        ...state,
+        apiStatus: payload,
       }
     default:
       return state;
