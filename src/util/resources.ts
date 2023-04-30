@@ -15,7 +15,7 @@ export const resources = {
   sortBy: 'Sort by',
   time: 'Time',
   price: 'Price',
-  locationIsRequired: 'Location required',
+  locationIsRequired: 'Location is required',
   signIn: "Sign In",
   password: "Password",
   email: "Email",
