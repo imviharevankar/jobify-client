@@ -16,33 +16,58 @@ import { IRoutes, routes } from './routes/routes';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { Suspense } from 'react';
 import CustomSpinner from './components/custom/CustomSpinner';
+import MessageModal from './components/modals/MessageModal';
+import { useData } from './context/DataContext';
+import { resources } from './util/resources';
+import { DataActionKeys } from './context/type/dataContext';
+import { SUCCESS } from './util/constants';
+import { CheckCircleOutlined, WarningOutlined } from "@ant-design/icons";
 
 function App() {
+  const { dataState, dataDispatcher } = useData();
+
+  const handleMessageModal = (): void => {
+    dataDispatcher({ type: DataActionKeys.MESSAGE_MODAL, payload: false })
+  }
 
   return (
-    <Suspense fallback={
-      <CustomSpinner />
-    } >
-      <Routes>
-        {
-          routes.map((route: IRoutes) => (
-            route.isPrivate
-              ? (
-                <Route element={<ProtectedRoute />}>
-                  <Route
-                    path={route.path}
-                    element={<CommonLayout child={< route.element />} />}
-                  />
-                </Route>
-              )
-              : <Route
-                path={route.path}
-                element={<CommonLayout child={< route.element />} />}
-              />
-          ))
+    <>
+      <MessageModal
+        open={true}
+        okCancel={handleMessageModal}
+        message={dataState.message}
+        btnText={resources?.ok}
+        btnAction={handleMessageModal}
+        icon={
+          dataState.apiStatus === SUCCESS
+            ? <CheckCircleOutlined className='fs_80' />
+            : <WarningOutlined className='fs_80' />
         }
-      </Routes>
-    </Suspense>
+      />
+      <Suspense fallback={
+        <CustomSpinner />
+      } >
+        <Routes>
+          {
+            routes.map((route: IRoutes) => (
+              route.isPrivate
+                ? (
+                  <Route element={<ProtectedRoute />}>
+                    <Route
+                      path={route.path}
+                      element={<CommonLayout child={< route.element />} />}
+                    />
+                  </Route>
+                )
+                : <Route
+                  path={route.path}
+                  element={<CommonLayout child={< route.element />} />}
+                />
+            ))
+          }
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 
