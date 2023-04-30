@@ -28,7 +28,7 @@ const SortCard = () => {
   return (
     <div className="bg_white flex align_center justify_between p_16 font_primary">
       <p className="fs_16">{resources?.sortBy}: </p>
-      <div className="flex g_16">
+      <div className="flex justify_space_evenly g_16">
         <SortItem toFind="timeline" label={resources.time} />
         <SortItem toFind="title" label={resources.title} />
       </div>

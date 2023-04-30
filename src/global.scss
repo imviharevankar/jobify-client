@@ -4,7 +4,7 @@
   max-width: $maxDesktop;
   width: 95vw;
   padding: 0 1rem;
-  margin: 1rem auto;
+  margin: 0 auto;
 }
 
 .img_container {
@@ -22,4 +22,39 @@
 
 .capitalize {
   text-transform: capitalize;
+}
+
+// hero banner
+.hero_container {
+  position: relative;
+
+  .hero_text {
+    position: absolute;
+    top: 0;
+    padding-top: 7rem;
+    padding-left: 20%;
+    background-color: rgba(0, 0, 0, 0.525);
+  }
+
+  .hero_search {
+    position: absolute;
+    top: 60%;
+    left: 10%;
+  }
+}
+
+@media only screen and (max-width: $tabSize) {
+  .aspact_3_1 {
+    aspect-ratio: 1;
+  }
+
+  .hero_text {
+    padding: 1rem !important;
+    font-size: 2rem;
+  }
+
+  .hero_search {
+    top: 30% !important;
+    right: 12% !important;
+  }
 }

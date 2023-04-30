@@ -23,7 +23,7 @@ const FilterPanel: FC = () => {
   return (
     <div className="bg_white mx_12 p_16 br_16_0_16_16">
       <CustomAccordion
-        header={<p className="fs_20 fw_500 lh_20 font_primary mb_12">{resources.typeOfEmployment}</p>}
+        header={<p className="fs_20 fw_500 lh_20 font_primary mb_12">{resources.category}</p>}
         panelBody={
           filterLabels?.map((ele: any) => {
             return (
